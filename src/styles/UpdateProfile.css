@@ -1,0 +1,83 @@
+.updateProfile {
+    padding: 20px;
+    background: #fff;
+    border-radius: 15px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    font-family: 'Arial', sans-serif;
+}
+
+h2 {
+    font-size: 28px;
+    font-weight: bold;
+    color: #2c3e50;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.updateForm {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.formGroup {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+label {
+    font-size: 14px;
+    color: #34495e;
+}
+
+input[type="text"],
+input[type="file"] {
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+input[type="text"]:focus {
+    border-color: #56ab2f;
+    box-shadow: 0 0 5px rgba(86, 171, 47, 0.5);
+}
+
+.submitButton {
+    padding: 12px;
+    background-color: #56ab2f;
+    color: #fff;
+    font-weight: bold;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.submitButton:hover {
+    background-color: #3b7d1f;
+}
+
+.successMessage {
+    color: #28a745;
+    text-align: center;
+    font-size: 16px;
+    margin-top: 10px;
+}
+
+.errorMessage {
+    color: #dc3545;
+    text-align: center;
+    font-size: 16px;
+    margin-top: 10px;
+}
+
+.fileName {
+    font-size: 14px;
+    color: #555;
+    margin-top: 5px;
+}
