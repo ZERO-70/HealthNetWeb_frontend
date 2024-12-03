@@ -1,17 +1,16 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom'; // Import useNavigate
+import { useNavigate } from 'react-router-dom';
 
 function Register() {
-    const [userType, setUserType] = useState(''); // To track if the user is a patient or doctor
+    const [userType, setUserType] = useState('');
     const [formData, setFormData] = useState({});
-    const [imageBase64, setImageBase64] = useState(''); // To store Base64 encoded image
+    const [imageBase64, setImageBase64] = useState('');
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [responseMessage, setResponseMessage] = useState('');
     const [errorMessage, setErrorMessage] = useState('');
-    const navigate = useNavigate(); // Initialize useNavigate for redirection
+    const navigate = useNavigate();
 
-    // Handle form field changes
     const handleChange = (e) => {
         setFormData({
             ...formData,
@@ -19,13 +18,12 @@ function Register() {
         });
     };
 
-    // Handle image upload and convert to Base64
     const handleImageUpload = (e) => {
         const file = e.target.files[0];
         const reader = new FileReader();
 
         reader.onloadend = () => {
-            setImageBase64(reader.result.split(',')[1]); // Extract Base64 data
+            setImageBase64(reader.result.split(',')[1]);
         };
 
         if (file) {
@@ -33,15 +31,41 @@ function Register() {
         }
     };
 
-    // Handle submission
+    const checkUsernameAvailability = async (username) => {
+        try {
+            const response = await fetch(
+                `https://healthnet-web-production.up.railway.app/user_authentication/exists/${username}`,
+                {
+                    method: 'GET',
+                    headers: { 'Content-Type': 'application/json' },
+                }
+            );
+
+            if (!response.ok) {
+                throw new Error('Error checking username availability.');
+            }
+
+            const exists = await response.json();
+            return exists;
+        } catch (error) {
+            console.error(error.message);
+            setErrorMessage('Failed to check username availability. Please try again.');
+            return true;
+        }
+    };
+
     const handleSubmit = async (e) => {
         e.preventDefault();
 
+        const usernameExists = await checkUsernameAvailability(username);
+        if (usernameExists) {
+            setErrorMessage('Username already exists. Please choose a different username.');
+            return;
+        }
+
         try {
-            // Add image data to the formData object
             const updatedFormData = { ...formData, image: imageBase64, image_type: 'jpeg' };
 
-            // Step 1: Send patient/doctor data
             const baseUrl = 'https://healthnet-web-production.up.railway.app';
             const personEndpoint = userType === 'PATIENT' ? '/patient' : '/doctor';
 
@@ -56,11 +80,8 @@ function Register() {
                 throw new Error(`Failed to register ${userType.toLowerCase()}: ${errorResponse}`);
             }
 
-            // Get personId from the response
             const personId = parseInt(await personResponse.text(), 10);
-            console.log(`${userType} ID received:`, personId);
 
-            // Step 2: Send authentication data
             const authPayload = {
                 username,
                 password,
@@ -81,8 +102,7 @@ function Register() {
 
             setResponseMessage(`Registration successful! You are now registered as a ${userType}.`);
 
-            // Redirect to the login page after successful registration
-            setTimeout(() => navigate('/'), 2000); // Redirect to login after 2 seconds
+            setTimeout(() => navigate('/'), 2000);
         } catch (error) {
             console.error(error.message);
             setErrorMessage(error.message);
@@ -116,26 +136,15 @@ function Register() {
                         />
                         {userType === 'PATIENT' && (
                             <>
-                                <input
-                                    type="text"
-                                    name="name"
-                                    placeholder="Name"
-                                    required
-                                    onChange={handleChange}
-                                />
-                                <input
-                                    type="text"
-                                    name="gender"
-                                    placeholder="Gender"
-                                    required
-                                    onChange={handleChange}
-                                />
+                                <input type="text" name="name" placeholder="Name" required onChange={handleChange} />
+                                <input type="text" name="gender" placeholder="Gender" required onChange={handleChange} />
                                 <input
                                     type="number"
                                     name="age"
                                     placeholder="Age"
                                     required
                                     onChange={handleChange}
+                                    className="fullWidthInput"
                                 />
                                 <input
                                     type="date"
@@ -143,6 +152,7 @@ function Register() {
                                     placeholder="Birthdate"
                                     required
                                     onChange={handleChange}
+                                    className="fullWidthInput"
                                 />
                                 <input
                                     type="text"
@@ -158,44 +168,21 @@ function Register() {
                                     required
                                     onChange={handleChange}
                                 />
-                                <input
-                                    type="text"
-                                    name="weight"
-                                    placeholder="Weight"
-                                    required
-                                    onChange={handleChange}
-                                />
-                                <input
-                                    type="text"
-                                    name="height"
-                                    placeholder="Height"
-                                    required
-                                    onChange={handleChange}
-                                />
+                                <input type="text" name="weight" placeholder="Weight" required onChange={handleChange} />
+                                <input type="text" name="height" placeholder="Height" required onChange={handleChange} />
                             </>
                         )}
                         {userType === 'DOCTOR' && (
                             <>
-                                <input
-                                    type="text"
-                                    name="name"
-                                    placeholder="Name"
-                                    required
-                                    onChange={handleChange}
-                                />
-                                <input
-                                    type="text"
-                                    name="gender"
-                                    placeholder="Gender"
-                                    required
-                                    onChange={handleChange}
-                                />
+                                <input type="text" name="name" placeholder="Name" required onChange={handleChange} />
+                                <input type="text" name="gender" placeholder="Gender" required onChange={handleChange} />
                                 <input
                                     type="number"
                                     name="age"
                                     placeholder="Age"
                                     required
                                     onChange={handleChange}
+                                    className="fullWidthInput"
                                 />
                                 <input
                                     type="date"
@@ -203,6 +190,7 @@ function Register() {
                                     placeholder="Birthdate"
                                     required
                                     onChange={handleChange}
+                                    className="fullWidthInput"
                                 />
                                 <input
                                     type="text"
@@ -234,6 +222,7 @@ function Register() {
                             required
                             value={username}
                             onChange={(e) => setUsername(e.target.value)}
+                            className="fullWidthInput"
                         />
                         <input
                             type="password"
@@ -241,8 +230,18 @@ function Register() {
                             required
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
+                            className="fullWidthInput"
                         />
-                        <button type="submit" className="button">Register</button>
+                        <button type="submit" className="button">
+                            Register
+                        </button>
+                        <button
+                            type="button"
+                            className="button"
+                            onClick={() => navigate('/')} // Navigate back to login page
+                        >
+                            Back to Login
+                        </button>
                     </form>
                 )}
                 {responseMessage && <p className="successMessage">{responseMessage}</p>}

@@ -151,3 +151,24 @@
     color: #3b7d1f;
     text-decoration: none;
 }
+
+.fullWidthInput {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+
+.button {
+    display: inline-block;
+    margin: 10px;
+    /* Add space between buttons */
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    transition: background-color 0.3s ease;
+}

@@ -1,0 +1,351 @@
+/* General container */
+.availableDoctors {
+    padding: 20px;
+    background: #fff;
+    border-radius: 15px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    font-family: 'Arial', sans-serif;
+    animation: fadeInContent 0.5s ease-in-out;
+    text-align: center;
+}
+
+/* Header */
+.infoTitle {
+    font-size: 28px;
+    font-weight: bold;
+    color: #2c3e50;
+    margin-bottom: 20px;
+}
+
+/* Doctor grid */
+.doctorGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 15px;
+}
+
+/* Individual doctor card */
+.doctorItem {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s, box-shadow 0.2s;
+    cursor: pointer;
+    text-align: center;
+}
+
+.doctorItem:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    background-color: #e6f7ff;
+}
+
+/* Doctor details container */
+.doctorDetails {
+    padding: 20px;
+    background: #fff;
+    border-radius: 15px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+}
+
+/* Profile image */
+.profileImage {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    border: 2px solid #2575fc;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    margin-bottom: 15px;
+    object-fit: cover;
+}
+
+/* Placeholder for no image */
+.placeholderCircle {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    background-color: #e0e0e0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px dashed #2575fc;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    margin-bottom: 15px;
+}
+
+/* Back button */
+.backButton {
+    padding: 10px 20px;
+    background-color: #2575fc;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.backButton:hover {
+    background-color: #6a11cb;
+    transform: scale(1.1);
+}
+
+/* Animations */
+@keyframes fadeInContent {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.searchContainer {
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.searchInput {
+    width: 100%;
+    max-width: 400px;
+    padding: 10px;
+    font-size: 16px;
+    border: 2px solid #ddd;
+    border-radius: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: border 0.3s ease-in-out;
+}
+
+.searchInput:focus {
+    border-color: #56ab2f;
+    outline: none;
+    box-shadow: 0 6px 12px rgba(86, 171, 47, 0.2);
+}
+
+.noResultsMessage {
+    text-align: center;
+    font-size: 18px;
+    color: #888;
+    margin-top: 20px;
+}
+
+.doctorGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 15px;
+}
+
+.doctorItem {
+    padding: 15px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s, box-shadow 0.2s;
+    cursor: pointer;
+}
+
+.doctorItem:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.doctorDetails {
+    text-align: center;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.profileImage {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 15px;
+    border: 2px solid #56ab2f;
+}
+
+.placeholderCircle {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    background-color: #e0e0e0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px dashed #56ab2f;
+}
+
+.placeholderText {
+    color: #888;
+    font-size: 14px;
+}
+
+
+.appointmentTab {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.appointmentTab h3 {
+    margin-bottom: 10px;
+    font-size: 18px;
+    color: #333;
+}
+
+.bookAppointmentButton,
+.backButton {
+    display: inline-block;
+    margin: 10px 5px;
+    padding: 10px 20px;
+    font-size: 16px;
+    color: #fff;
+    background-color: #56ab2f;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.bookAppointmentButton:hover,
+.backButton:hover {
+    background-color: #3c8d22;
+    transform: scale(1.05);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+}
+
+.bookAppointmentButton:active,
+.backButton:active {
+    transform: scale(0.95);
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* General Styling */
+.appointmentTab {
+    background-color: #f9f9f9;
+    /* Light background for clarity */
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    margin-top: 20px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Styling for labels and headings */
+.appointmentTab h3 {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+/* Input Fields */
+.appointmentDateInput,
+.appointmentStartTimeInput {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fff;
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+    transition: border-color 0.3s ease;
+}
+
+.appointmentDateInput:focus,
+.appointmentStartTimeInput:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+/* Dropdown Select Fields */
+.appointmentTimeSelect,
+.appointmentDurationSelect {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fff;
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+    transition: border-color 0.3s ease;
+    appearance: none;
+    /* Remove default dropdown styling */
+    cursor: pointer;
+}
+
+.appointmentTimeSelect:focus,
+.appointmentDurationSelect:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+/* Button Styling */
+.sendProposalButton {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #fff;
+    background-color: #28a745;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+    transition: background-color 0.3s ease;
+}
+
+.sendProposalButton:hover {
+    background-color: #218838;
+}
+
+.sendProposalButton:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+/* Response Message */
+.responseMessage {
+    margin-top: 15px;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    color: #28a745;
+    /* Success color */
+}
+
+.responseMessage.error {
+    color: #dc3545;
+    /* Error color */
+}
+
+/* Error Message Styling */
+.errorMessage {
+    color: #dc3545;
+    font-size: 16px;
+    font-weight: bold;
+    margin-top: 10px;
+    text-align: center;
+}
+
+/* Loading Message */
+.loadingMessage {
+    color: #6c757d;
+    font-size: 16px;
+    text-align: center;
+    margin-top: 20px;
+}

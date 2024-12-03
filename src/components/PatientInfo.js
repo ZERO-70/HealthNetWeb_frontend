@@ -29,6 +29,14 @@ function PatientInfo() {
                 const data = await response.json();
                 console.log('Fetched patient data:', data); // Debugging line
                 setPatientData(data);
+
+                // Save the patient ID to localStorage
+                if (data?.id) {
+                    localStorage.setItem('patientId', data.id);
+                    console.log('Patient ID saved to localStorage:', data.id);
+                } else {
+                    console.warn('Patient ID is missing in the fetched data.');
+                }
             } catch (error) {
                 console.error('Error fetching patient info:', error);
                 setErrorMessage(error.message);

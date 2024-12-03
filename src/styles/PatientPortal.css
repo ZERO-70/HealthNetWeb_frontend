@@ -83,3 +83,60 @@
         transform: translateX(0);
     }
 }
+
+/* Appointments Tab Specific Styles */
+.appointmentsTab {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding: 15px;
+    background-color: #f9f9f9;
+    border-radius: 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    animation: slideIn 0.5s ease-in-out;
+}
+
+.appointmentCard {
+    padding: 15px;
+    background-color: #fff;
+    border: 2px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.appointmentCard:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.appointmentCard .appointmentDetail {
+    font-size: 16px;
+    color: #2c3e50;
+    margin-bottom: 5px;
+    line-height: 1.5;
+}
+
+.appointmentCard .appointmentTitle {
+    font-size: 18px;
+    font-weight: bold;
+    color: #56ab2f;
+    margin-bottom: 10px;
+}
+
+/* Tab Navigation Enhancements */
+.tabButton.appointmentsActive {
+    background-color: #56ab2f;
+    color: #fff;
+    border-color: #56ab2f;
+    transform: scale(1.1);
+    box-shadow: 0 8px 15px rgba(86, 171, 47, 0.5);
+}
+
+/* Center alignment for empty appointments message */
+.noAppointmentsMessage {
+    font-size: 18px;
+    color: #666;
+    text-align: center;
+    margin-top: 20px;
+}

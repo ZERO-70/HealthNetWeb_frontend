@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import PatientInfo from '../components/PatientInfo';
 import AvailableDoctors from '../components/AvailableDoctors';
 import UpdateProfile from '../components/UpdateProfile';
+import PatientAppointments from '../components/PatientAppointments';
+import PatientMedicalRecords from '../components/PatientMedicalRecords'; // Import Medical Records component
 import '../styles/PatientPortal.css'; // Enhanced styles
 
 function PatientPortal() {
@@ -15,6 +17,10 @@ function PatientPortal() {
                 return <AvailableDoctors />;
             case 'UpdateProfile':
                 return <UpdateProfile />;
+            case 'Appointments':
+                return <PatientAppointments />;
+            case 'MedicalRecords':
+                return <PatientMedicalRecords />;
             default:
                 return <PatientInfo />;
         }
@@ -40,6 +46,18 @@ function PatientPortal() {
                     onClick={() => setActiveTab('UpdateProfile')}
                 >
                     Update Profile
+                </button>
+                <button
+                    className={`tabButton ${activeTab === 'Appointments' ? 'active' : ''}`}
+                    onClick={() => setActiveTab('Appointments')}
+                >
+                    Appointments
+                </button>
+                <button
+                    className={`tabButton ${activeTab === 'MedicalRecords' ? 'active' : ''}`}
+                    onClick={() => setActiveTab('MedicalRecords')} // New tab for Medical Records
+                >
+                    Medical Records
                 </button>
             </div>
             <div className="tabContent">{renderTabContent()}</div>
