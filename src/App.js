@@ -3,6 +3,8 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import PatientPortal from './pages/PatientPortal'; // Import the Patient Portal component
+import DoctorPortal from './pages/DoctorPortal'; // Import the Doctor Portal component
+import StaffPortal from './pages/StaffPortal';
 
 function App() {
   return (
@@ -17,7 +19,9 @@ function App() {
         {/* Patient Portal Route */}
         <Route path="/patient-portal" element={<PatientPortal />} />
 
-        {/* Add more routes as needed */}
+        {/* Doctor Portal Route */}
+        <Route path="/doctor-portal" element={<DoctorPortal />} /> {/* Add Doctor Portal */}
+        <Route path="/staff-portal" element={<StaffPortal />} />
       </Routes>
     </Router>
   );

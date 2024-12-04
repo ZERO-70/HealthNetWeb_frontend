@@ -17,7 +17,7 @@ function Login() {
         const payload = {
             username: username,
             password: password,
-            role: "PATIENT", // Default role (can be adjusted in the backend if necessary)
+            role: 'PATIENT', // Default role (can be adjusted in the backend if necessary)
             personId: null,
         };
 
@@ -69,7 +69,11 @@ function Login() {
                 navigate('/patient-portal'); // Redirect to Patient Portal
             } else if (homeData.includes('DOCTOR')) {
                 navigate('/doctor-portal'); // Redirect to Doctor Portal
-            } else {
+            } else if (homeData.includes('STAFF')) {
+                navigate('/staff-portal');
+            }
+
+            else {
                 throw new Error('Unknown role in response data');
             }
         } catch (error) {

@@ -1,0 +1,192 @@
+.staffPortal {
+    padding: 20px;
+    font-family: 'Arial', sans-serif;
+    background: #ffffff;
+    /* White background */
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    animation: fadeInPage 1s ease-in;
+}
+
+.tabNavigation {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+    gap: 10px;
+    width: 100%;
+    max-width: 600px;
+}
+
+.tabButton {
+    flex: 1;
+    padding: 10px 20px;
+    font-size: 16px;
+    border: 2px solid #ddd;
+    background-color: #f9f9f9;
+    /* Neutral light background */
+    color: #333;
+    /* Darker text color for contrast */
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.tabButton.active {
+    background-color: #56ab2f;
+    /* Green for active tab */
+    color: #fff;
+    border-color: #56ab2f;
+    transform: scale(1.1);
+    box-shadow: 0 8px 15px rgba(86, 171, 47, 0.5);
+}
+
+.tabButton:hover {
+    background-color: #a8e063;
+    /* Slightly lighter green for hover */
+    color: #fff;
+    border-color: #a8e063;
+    box-shadow: 0 6px 12px rgba(168, 224, 99, 0.5);
+}
+
+.tabContent {
+    width: 100%;
+    max-width: 800px;
+    border-radius: 15px;
+    padding: 20px;
+    background-color: #ffffff;
+    /* White background for content */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    animation: slideIn 0.5s ease-in-out;
+}
+
+/* Animations */
+@keyframes fadeInPage {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Search Patient Tab Specific Styles */
+.patientSearchTab {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding: 15px;
+    background-color: #f9f9f9;
+    /* Light gray background for cards */
+    border-radius: 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    animation: slideIn 0.5s ease-in-out;
+}
+
+.patientCard {
+    padding: 15px;
+    background-color: #ffffff;
+    /* White for card background */
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.patientCard:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.patientCard .patientDetail {
+    font-size: 16px;
+    color: #333;
+    /* Dark text color for readability */
+    margin-bottom: 5px;
+    line-height: 1.5;
+}
+
+.patientCard .patientTitle {
+    font-size: 18px;
+    font-weight: bold;
+    color: #56ab2f;
+    /* Green for patient title */
+    margin-bottom: 10px;
+}
+
+/* Center alignment for empty patient search message */
+.noPatientsMessage {
+    font-size: 18px;
+    color: #666;
+    text-align: center;
+    margin-top: 20px;
+}
+
+/* Manage Inventory Tab Specific Styles */
+.inventoryTab {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding: 15px;
+    background-color: #f9f9f9;
+    /* Light gray background */
+    border-radius: 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    animation: slideIn 0.5s ease-in-out;
+}
+
+.inventoryCard {
+    padding: 15px;
+    background-color: #ffffff;
+    /* White card background */
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.inventoryCard:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.inventoryCard .inventoryDetail {
+    font-size: 16px;
+    color: #333;
+    /* Darker color for details */
+    margin-bottom: 5px;
+    line-height: 1.5;
+}
+
+.inventoryCard .inventoryTitle {
+    font-size: 18px;
+    font-weight: bold;
+    color: #56ab2f;
+    /* Green for inventory title */
+    margin-bottom: 10px;
+}
+
+/* Center alignment for empty inventory message */
+.noInventoryMessage {
+    font-size: 18px;
+    color: #666;
+    text-align: center;
+    margin-top: 20px;
+}
