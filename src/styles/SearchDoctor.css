@@ -1,5 +1,4 @@
-/* Container */
-.findPatient {
+.searchDoctor {
     padding: 20px;
     background: #fff;
     border-radius: 15px;
@@ -8,8 +7,7 @@
     animation: fadeInContent 0.5s ease-in-out;
 }
 
-/* Title */
-.findPatientTitle {
+.searchDoctorTitle {
     font-size: 28px;
     font-weight: bold;
     color: #2c3e50;
@@ -17,7 +15,6 @@
     text-align: center;
 }
 
-/* Search Bar */
 .searchBar {
     width: 100%;
     max-width: 400px;
@@ -31,20 +28,26 @@
 }
 
 .searchBar:focus {
-    border-color: #56ab2f;
+    border-color: #2575fc;
     outline: none;
-    box-shadow: 0 6px 12px rgba(86, 171, 47, 0.2);
+    box-shadow: 0 6px 12px rgba(37, 117, 252, 0.2);
 }
 
-/* Patient Grid */
-.patientGrid {
+.errorMessage {
+    color: #e74c3c;
+    font-size: 16px;
+    font-weight: bold;
+    margin-top: 10px;
+    text-align: center;
+}
+
+.doctorGrid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 20px;
 }
 
-/* Patient Card */
-.patientCard {
+.doctorCard {
     background-color: #f9f9f9;
     padding: 20px;
     border-radius: 10px;
@@ -53,28 +56,18 @@
     cursor: pointer;
 }
 
-.patientCard:hover {
+.doctorCard:hover {
     transform: translateY(-5px);
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
 
-/* Card Details */
-.patientCard p {
+.doctorCard p {
     margin: 5px 0;
     font-size: 16px;
     color: #34495e;
 }
 
-/* Error Message */
-.errorMessage {
-    color: #e74c3c;
-    font-size: 16px;
-    font-weight: bold;
-    text-align: center;
-    margin-top: 10px;
-}
-
-/* Animation */
+/* Animations */
 @keyframes fadeInContent {
     from {
         opacity: 0;

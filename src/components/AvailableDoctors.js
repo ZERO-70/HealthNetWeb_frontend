@@ -103,38 +103,8 @@ function AvailableDoctors() {
     };
 
     const handleStartTimeChange = (e) => {
-        const selectedStartTime = e.target.value;
-
-        const [rangeStart, rangeEnd] = selectedTimeRange.split(' - ');
-
-        // Get the current date and time
-        const now = new Date();
-        const today = new Date().toISOString().split('T')[0];
-
-        // If the appointment is for today, validate against the current time
-        if (appointmentDate === today) {
-            const currentTime = now.toTimeString().split(' ')[0].slice(0, 5); // Extract HH:mm format
-
-            if (selectedStartTime < currentTime) {
-                alert('You cannot select a start time earlier than the current time.');
-                setStartTime(''); // Reset the start time
-                return;
-            }
-        }
-
-        if (selectedStartTime >= rangeStart && selectedStartTime <= rangeEnd) {
-            setStartTime(selectedStartTime);
-
-            const end = new Date(`1970-01-01T${rangeEnd}:00`);
-            const start = new Date(`1970-01-01T${selectedStartTime}:00`);
-            const availableMinutes = (end - start) / (1000 * 60);
-
-            setMaxDuration(Math.min(availableMinutes, 120));
-            setAppointmentDuration(5);
-        } else {
-            alert('Selected time is outside the available range.');
-            setStartTime('');
-        }
+        // Simply allow the user to select the time without any restrictions
+        setStartTime(e.target.value);
     };
 
 
@@ -149,9 +119,39 @@ function AvailableDoctors() {
                 throw new Error('Authentication token is missing. Please log in again.');
             }
 
+            if (!selectedTimeRange) {
+                alert('Please select a valid time range.');
+                return;
+            }
+
+            if (!startTime) {
+                alert('Please select a valid start time.');
+                return;
+            }
+
+            const [rangeStart, rangeEnd] = selectedTimeRange.split(' - ');
+
+            if (startTime < rangeStart || startTime > rangeEnd) {
+                alert('The selected start time is outside the available time range.');
+                return;
+            }
+
+            // Get the current date and time
+            const now = new Date();
+            const today = new Date().toISOString().split('T')[0];
+
+            if (appointmentDate === today) {
+                const currentTime = now.toTimeString().split(' ')[0].slice(0, 5); // Extract HH:mm format
+
+                if (startTime < currentTime) {
+                    alert('You cannot select a start time earlier than the current time.');
+                    return;
+                }
+            }
+
             const patientId = localStorage.getItem('patientId'); // Retrieve patient ID from localStorage
 
-            // Calculate the end time correctly
+            // Calculate the end time
             const [hours, minutes] = startTime.split(':').map(Number);
             const startDateTime = new Date();
             startDateTime.setHours(hours);
@@ -170,7 +170,6 @@ function AvailableDoctors() {
                 is_approved: false,
             };
 
-            // Debugging the appointment payload
             console.log('Appointment Payload:', appointmentPayload);
 
             const response = await fetch('https://healthnet-web-production.up.railway.app/appointment', {
@@ -193,6 +192,7 @@ function AvailableDoctors() {
             setResponseMessage('Failed to send appointment proposal.');
         }
     };
+
 
 
 

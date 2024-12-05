@@ -1,5 +1,5 @@
-/* Container */
-.findPatient {
+/* General container for the component */
+.searchAppointment {
     padding: 20px;
     background: #fff;
     border-radius: 15px;
@@ -8,8 +8,8 @@
     animation: fadeInContent 0.5s ease-in-out;
 }
 
-/* Title */
-.findPatientTitle {
+/* Header Title */
+.searchAppointmentTitle {
     font-size: 28px;
     font-weight: bold;
     color: #2c3e50;
@@ -36,15 +36,24 @@
     box-shadow: 0 6px 12px rgba(86, 171, 47, 0.2);
 }
 
-/* Patient Grid */
-.patientGrid {
+/* Error Message */
+.errorMessage {
+    color: #e74c3c;
+    font-size: 16px;
+    font-weight: bold;
+    margin-top: 10px;
+    text-align: center;
+}
+
+/* Appointment Grid */
+.appointmentGrid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 20px;
 }
 
-/* Patient Card */
-.patientCard {
+/* Individual Appointment Card */
+.appointmentCard {
     background-color: #f9f9f9;
     padding: 20px;
     border-radius: 10px;
@@ -53,25 +62,16 @@
     cursor: pointer;
 }
 
-.patientCard:hover {
+.appointmentCard:hover {
     transform: translateY(-5px);
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
 
-/* Card Details */
-.patientCard p {
+/* Appointment Details */
+.appointmentCard p {
     margin: 5px 0;
     font-size: 16px;
     color: #34495e;
-}
-
-/* Error Message */
-.errorMessage {
-    color: #e74c3c;
-    font-size: 16px;
-    font-weight: bold;
-    text-align: center;
-    margin-top: 10px;
 }
 
 /* Animation */

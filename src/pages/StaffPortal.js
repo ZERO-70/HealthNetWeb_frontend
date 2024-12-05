@@ -4,6 +4,8 @@ import ManageMedicalRecords from '../components/ManageMedicalRecords';
 import ManageInventory from '../components/ManageInventory';
 import FindPatients from '../components/FindPatients'; // Updated name
 import SearchAppointments from '../components/SearchAppointments';
+import UpdateStaffProfile from '../components/UpdateStaffProfile'; // New Component
+import SearchDoctor from '../components/SearchDoctor'; // New Component
 import '../styles/StaffPortal.css';
 
 function StaffPortal() {
@@ -21,6 +23,10 @@ function StaffPortal() {
                 return <FindPatients />;
             case 'SearchAppointments':
                 return <SearchAppointments />;
+            case 'UpdateStaffProfile': // New case
+                return <UpdateStaffProfile />;
+            case 'SearchDoctor': // New case
+                return <SearchDoctor />;
             default:
                 return <StaffInfo />;
         }
@@ -58,6 +64,18 @@ function StaffPortal() {
                     onClick={() => setActiveTab('SearchAppointments')}
                 >
                     Search Appointments
+                </button>
+                <button
+                    className={`tabButton ${activeTab === 'UpdateStaffProfile' ? 'active' : ''}`} // New Tab
+                    onClick={() => setActiveTab('UpdateStaffProfile')}
+                >
+                    Update Staff Profile
+                </button>
+                <button
+                    className={`tabButton ${activeTab === 'SearchDoctor' ? 'active' : ''}`} // New Tab
+                    onClick={() => setActiveTab('SearchDoctor')}
+                >
+                    Search Doctor
                 </button>
             </div>
             <div className="tabContent">{renderTabContent()}</div>

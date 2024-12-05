@@ -1,0 +1,240 @@
+/* General container for the component */
+.medicalRecords {
+    padding: 20px;
+    background: #fff;
+    border-radius: 15px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    font-family: 'Arial', sans-serif;
+    animation: fadeInContent 0.5s ease-in-out;
+}
+
+/* Header Title */
+.medicalRecordsTitle {
+    font-size: 28px;
+    font-weight: bold;
+    color: #2c3e50;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* Search Bar */
+.searchBar {
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto 20px auto;
+    padding: 10px;
+    font-size: 16px;
+    border: 2px solid #ddd;
+    border-radius: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: border 0.3s ease-in-out;
+}
+
+.searchBar:focus {
+    border-color: #56ab2f;
+    outline: none;
+    box-shadow: 0 6px 12px rgba(86, 171, 47, 0.2);
+}
+
+/* Add Medical Record Button */
+.createButton {
+    padding: 12px 20px;
+    background-color: #56ab2f;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.createButton:hover {
+    background-color: #3c8d22;
+    transform: scale(1.05);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Error Message */
+.errorMessage {
+    color: #e74c3c;
+    font-size: 16px;
+    font-weight: bold;
+    margin-top: 10px;
+    text-align: center;
+}
+
+/* Medical Records List Grid */
+.medicalRecordsList {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+/* Individual Medical Record Card */
+.medicalRecordCard {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s, box-shadow 0.2s;
+    cursor: pointer;
+}
+
+.medicalRecordCard:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Record Details in Card */
+.medicalRecordCard p {
+    margin: 5px 0;
+    font-size: 16px;
+    color: #34495e;
+}
+
+/* Action Buttons in Card */
+.recordActions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+.updateButton {
+    padding: 8px 15px;
+    background-color: #56ab2f;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.updateButton:hover {
+    background-color: #3c8d22;
+    transform: scale(1.05);
+}
+
+.deleteButton {
+    padding: 8px 15px;
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.deleteButton:hover {
+    background-color: #c0392b;
+    transform: scale(1.05);
+}
+
+/* Create/Edit Record Form Container */
+.createTab,
+.editTab {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+}
+
+/* Form Title */
+.createTab h3,
+.editTab h3 {
+    font-size: 22px;
+    font-weight: bold;
+    color: #2c3e50;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Form Labels */
+.createTab label,
+.editTab label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 14px;
+    font-weight: bold;
+    color: #34495e;
+}
+
+/* Form Inputs */
+.createTab input,
+.editTab input,
+.createTab select,
+.editTab select {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    background-color: #fff;
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+    transition: border 0.3s ease;
+}
+
+.createTab input:focus,
+.editTab input:focus,
+.createTab select:focus,
+.editTab select:focus {
+    border-color: #56ab2f;
+    outline: none;
+    box-shadow: 0 0 5px rgba(86, 171, 47, 0.2);
+}
+
+/* Form Buttons */
+.saveButton,
+.cancelButton {
+    padding: 12px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.saveButton {
+    background-color: #56ab2f;
+    color: white;
+    margin-right: 10px;
+}
+
+.saveButton:hover {
+    background-color: #3c8d22;
+    transform: scale(1.05);
+}
+
+.cancelButton {
+    background-color: #e74c3c;
+    color: white;
+}
+
+.cancelButton:hover {
+    background-color: #c0392b;
+    transform: scale(1.05);
+}
+
+/* Animation */
+@keyframes fadeInContent {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
