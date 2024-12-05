@@ -1,0 +1,147 @@
+.adminPortal {
+    padding: 20px;
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(to bottom, #f4faff, #e3f2fd);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    animation: fadeInPage 1s ease-in;
+}
+
+.portalTitle {
+    font-size: 36px;
+    color: #2c3e50;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.portalNav {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+    gap: 10px;
+    width: 100%;
+    max-width: 600px;
+}
+
+.portalNav ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    gap: 15px;
+}
+
+.portalNav li {
+    list-style: none;
+}
+
+.portalNav a {
+    text-decoration: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #f4faff;
+    color: #2c3e50;
+    border: 2px solid #ddd;
+    border-radius: 25px;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    display: inline-block;
+    text-align: center;
+}
+
+.portalNav a:hover {
+    background-color: #a8e063;
+    color: #fff;
+    border-color: #a8e063;
+    box-shadow: 0 6px 12px rgba(168, 224, 99, 0.5);
+}
+
+.portalNav a.active {
+    background-color: #56ab2f;
+    color: #fff;
+    border-color: #56ab2f;
+    transform: scale(1.1);
+    box-shadow: 0 8px 15px rgba(86, 171, 47, 0.5);
+}
+
+.portalContent {
+    width: 100%;
+    max-width: 800px;
+    border-radius: 15px;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    animation: slideIn 0.5s ease-in-out;
+}
+
+/* Specific styles for Admin Info Tab */
+.adminInfoTab {
+    padding: 15px;
+    background-color: #f9f9f9;
+    border-radius: 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    animation: slideIn 0.5s ease-in-out;
+}
+
+.card {
+    padding: 15px;
+    background-color: #fff;
+    border: 2px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.card .detail {
+    font-size: 16px;
+    color: #2c3e50;
+    margin-bottom: 5px;
+    line-height: 1.5;
+}
+
+.card .title {
+    font-size: 18px;
+    font-weight: bold;
+    color: #56ab2f;
+    margin-bottom: 10px;
+}
+
+/* Center alignment for empty messages */
+.noDataMessage {
+    font-size: 18px;
+    color: #666;
+    text-align: center;
+    margin-top: 20px;
+}
+
+/* Animations */
+@keyframes fadeInPage {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}

@@ -1,16 +1,15 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import '../styles/RegisterStaff.css'; // Optional: Include your custom CSS styles for better UI
 
-function Register() {
-    const [userType, setUserType] = useState('');
+function AddStaff() {
     const [formData, setFormData] = useState({});
     const [imageBase64, setImageBase64] = useState('');
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [responseMessage, setResponseMessage] = useState('');
     const [errorMessage, setErrorMessage] = useState('');
-    const navigate = useNavigate();
 
+    // Handle input changes
     const handleChange = (e) => {
         setFormData({
             ...formData,
@@ -18,12 +17,13 @@ function Register() {
         });
     };
 
+    // Handle image upload and convert it to Base64
     const handleImageUpload = (e) => {
         const file = e.target.files[0];
         const reader = new FileReader();
 
         reader.onloadend = () => {
-            setImageBase64(reader.result.split(',')[1]);
+            setImageBase64(reader.result.split(',')[1]); // Extract Base64 string
         };
 
         if (file) {
@@ -31,6 +31,7 @@ function Register() {
         }
     };
 
+    // Check if username is available
     const checkUsernameAvailability = async (username) => {
         try {
             const response = await fetch(
@@ -54,9 +55,11 @@ function Register() {
         }
     };
 
+    // Handle form submission
     const handleSubmit = async (e) => {
         e.preventDefault();
 
+        // Check if username is available
         const usernameExists = await checkUsernameAvailability(username);
         if (usernameExists) {
             setErrorMessage('Username already exists. Please choose a different username.');
@@ -64,32 +67,33 @@ function Register() {
         }
 
         try {
+            // Add image data to formData
             const updatedFormData = { ...formData, image: imageBase64, image_type: 'jpeg' };
 
-            const baseUrl = 'https://healthnet-web-production.up.railway.app';
-            const personEndpoint = userType === 'PATIENT' ? '/patient' : '/doctor';
-
-            const personResponse = await fetch(`${baseUrl}${personEndpoint}`, {
+            // First, register the staff
+            const staffResponse = await fetch('https://healthnet-web-production.up.railway.app/staff', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(updatedFormData),
             });
 
-            if (!personResponse.ok) {
-                const errorResponse = await personResponse.text();
-                throw new Error(`Failed to register ${userType.toLowerCase()}: ${errorResponse}`);
+            if (!staffResponse.ok) {
+                const errorResponse = await staffResponse.text();
+                throw new Error(`Failed to register staff: ${errorResponse}`);
             }
 
-            const personId = parseInt(await personResponse.text(), 10);
+            // Get the generated staff ID
+            const staffId = parseInt(await staffResponse.text(), 10);
 
+            // Then, set up credentials
             const authPayload = {
                 username,
                 password,
-                role: userType,
-                personId,
+                role: 'STAFF',
+                personId: staffId,
             };
 
-            const authResponse = await fetch(`${baseUrl}/user_authentication/register`, {
+            const authResponse = await fetch('https://healthnet-web-production.up.railway.app/user_authentication/register', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(authPayload),
@@ -100,11 +104,13 @@ function Register() {
                 throw new Error(`Failed to register user: ${errorResponse}`);
             }
 
-            setResponseMessage(`Registration successful! You are now registered as a ${userType}.`);
-
-            setTimeout(() => navigate('/'), 2000);
+            setResponseMessage('Staff registration successful!');
+            setFormData({});
+            setUsername('');
+            setPassword('');
+            setImageBase64('');
         } catch (error) {
-            console.error(error.message);
+            console.error('Error during registration:', error.message);
             setErrorMessage(error.message);
         }
     };
@@ -112,138 +118,80 @@ function Register() {
     return (
         <div className="wrapper">
             <div className="container">
-                <h1 className="title">Register</h1>
-                {!userType && (
-                    <div className="userTypeSelection">
-                        <p>Are you registering as a:</p>
-                        <button onClick={() => setUserType('PATIENT')} className="button">
-                            Patient
-                        </button>
-                        <button onClick={() => setUserType('DOCTOR')} className="button">
-                            Doctor
-                        </button>
-                    </div>
-                )}
-                {userType && (
-                    <form onSubmit={handleSubmit} className="form">
-                        <h2>Register as a {userType}</h2>
-                        <input
-                            type="file"
-                            name="image"
-                            accept="image/*"
-                            onChange={handleImageUpload}
-                            required
-                        />
-                        {userType === 'PATIENT' && (
-                            <>
-                                <input type="text" name="name" placeholder="Name" required onChange={handleChange} />
-                                <input type="text" name="gender" placeholder="Gender" required onChange={handleChange} />
-                                <input
-                                    type="number"
-                                    name="age"
-                                    placeholder="Age"
-                                    required
-                                    onChange={handleChange}
-                                    className="fullWidthInput"
-                                />
-                                <input
-                                    type="date"
-                                    name="birthdate"
-                                    placeholder="Birthdate"
-                                    required
-                                    onChange={handleChange}
-                                    className="fullWidthInput"
-                                />
-                                <input
-                                    type="text"
-                                    name="contact_info"
-                                    placeholder="Contact Info"
-                                    required
-                                    onChange={handleChange}
-                                />
-                                <input
-                                    type="text"
-                                    name="address"
-                                    placeholder="Address"
-                                    required
-                                    onChange={handleChange}
-                                />
-                                <input type="text" name="weight" placeholder="Weight" required onChange={handleChange} />
-                                <input type="text" name="height" placeholder="Height" required onChange={handleChange} />
-                            </>
-                        )}
-                        {userType === 'DOCTOR' && (
-                            <>
-                                <input type="text" name="name" placeholder="Name" required onChange={handleChange} />
-                                <input type="text" name="gender" placeholder="Gender" required onChange={handleChange} />
-                                <input
-                                    type="number"
-                                    name="age"
-                                    placeholder="Age"
-                                    required
-                                    onChange={handleChange}
-                                    className="fullWidthInput"
-                                />
-                                <input
-                                    type="date"
-                                    name="birthdate"
-                                    placeholder="Birthdate"
-                                    required
-                                    onChange={handleChange}
-                                    className="fullWidthInput"
-                                />
-                                <input
-                                    type="text"
-                                    name="contact_info"
-                                    placeholder="Contact Info"
-                                    required
-                                    onChange={handleChange}
-                                />
-                                <input
-                                    type="text"
-                                    name="address"
-                                    placeholder="Address"
-                                    required
-                                    onChange={handleChange}
-                                />
-                                <input
-                                    type="text"
-                                    name="specialization"
-                                    placeholder="Specialization"
-                                    required
-                                    onChange={handleChange}
-                                />
-                            </>
-                        )}
-                        <h3>Set up your credentials</h3>
-                        <input
-                            type="text"
-                            placeholder="Username"
-                            required
-                            value={username}
-                            onChange={(e) => setUsername(e.target.value)}
-                            className="fullWidthInput"
-                        />
-                        <input
-                            type="password"
-                            placeholder="Password"
-                            required
-                            value={password}
-                            onChange={(e) => setPassword(e.target.value)}
-                            className="fullWidthInput"
-                        />
-                        <button type="submit" className="button">
-                            Register
-                        </button>
-                        <button
-                            type="button"
-                            className="button"
-                            onClick={() => navigate('/')} // Navigate back to login page
-                        >
-                            Back to Login
-                        </button>
-                    </form>
-                )}
+                <h1 className="title">Register Staff</h1>
+                <form onSubmit={handleSubmit} className="form">
+                    <input
+                        type="file"
+                        name="image"
+                        accept="image/*"
+                        onChange={handleImageUpload}
+                        required
+                    />
+                    <input type="text" name="name" placeholder="Name" required onChange={handleChange} />
+                    <select name="gender" required onChange={handleChange}>
+                        <option value="">Select Gender</option>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                        <option value="Other">Other</option>
+                    </select>
+                    <input
+                        type="number"
+                        name="age"
+                        placeholder="Age"
+                        required
+                        onChange={handleChange}
+                        className="fullWidthInput"
+                    />
+                    <input
+                        type="date"
+                        name="birthdate"
+                        placeholder="Birthdate"
+                        required
+                        onChange={handleChange}
+                        className="fullWidthInput"
+                    />
+                    <input
+                        type="text"
+                        name="contact_info"
+                        placeholder="Contact Info"
+                        required
+                        onChange={handleChange}
+                    />
+                    <input
+                        type="text"
+                        name="address"
+                        placeholder="Address"
+                        required
+                        onChange={handleChange}
+                    />
+                    <input
+                        type="text"
+                        name="proffession"
+                        placeholder="Profession"
+                        required
+                        onChange={handleChange}
+                    />
+                    <h3>Set up your credentials</h3>
+                    <input
+                        type="text"
+                        placeholder="Username"
+                        required
+                        value={username}
+                        onChange={(e) => setUsername(e.target.value)}
+                        className="fullWidthInput"
+                    />
+                    <input
+                        type="password"
+                        placeholder="Password"
+                        required
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        className="fullWidthInput"
+                    />
+                    <button type="submit" className="button">
+                        Register Staff
+                    </button>
+                </form>
                 {responseMessage && <p className="successMessage">{responseMessage}</p>}
                 {errorMessage && <p className="errorMessage">{errorMessage}</p>}
             </div>
@@ -251,4 +199,4 @@ function Register() {
     );
 }
 
-export default Register;
+export default AddStaff;

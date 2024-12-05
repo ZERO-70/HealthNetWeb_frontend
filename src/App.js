@@ -5,6 +5,7 @@ import Register from './pages/Register';
 import PatientPortal from './pages/PatientPortal'; // Import the Patient Portal component
 import DoctorPortal from './pages/DoctorPortal'; // Import the Doctor Portal component
 import StaffPortal from './pages/StaffPortal';
+import AdminPortal from './pages/AdminPortal';
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
         {/* Doctor Portal Route */}
         <Route path="/doctor-portal" element={<DoctorPortal />} /> {/* Add Doctor Portal */}
         <Route path="/staff-portal" element={<StaffPortal />} />
+        <Route path="/admin-portal" element={<AdminPortal />} />
       </Routes>
     </Router>
   );

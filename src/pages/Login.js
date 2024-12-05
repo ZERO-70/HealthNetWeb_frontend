@@ -72,6 +72,9 @@ function Login() {
             } else if (homeData.includes('STAFF')) {
                 navigate('/staff-portal');
             }
+            else if (homeData.includes('ADMIN')) {
+                navigate('/admin-portal');
+            }
 
             else {
                 throw new Error('Unknown role in response data');

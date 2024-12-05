@@ -1,0 +1,89 @@
+.adminInfo {
+    padding: 20px;
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(to bottom, #f4faff, #e3f2fd);
+    border-radius: 15px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    animation: fadeInPage 1s ease-in;
+    max-width: 800px;
+    margin: auto;
+}
+
+.infoTitle {
+    text-align: center;
+    font-size: 24px;
+    color: #2c3e50;
+    margin-bottom: 20px;
+}
+
+.imageContainer {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.profileImage {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    border: 3px solid #56ab2f;
+}
+
+.placeholderCircle {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    background-color: #ddd;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 3px dashed #bbb;
+}
+
+.placeholderText {
+    font-size: 16px;
+    color: #666;
+}
+
+.infoGrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
+.infoItem {
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 10px 15px;
+    border: 1px solid #ddd;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.infoItem strong {
+    color: #2c3e50;
+}
+
+.errorMessage {
+    color: red;
+    text-align: center;
+    font-size: 16px;
+}
+
+.loadingMessage {
+    color: #2c3e50;
+    text-align: center;
+    font-size: 18px;
+}
+
+/* Animation */
+@keyframes fadeInPage {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
