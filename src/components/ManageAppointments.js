@@ -1,6 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import '../styles/ManageAppointments.css'; // Custom CSS for styling
 
+
+
+const getAppointmentCardColor = (appointment) => {
+    if (appointment.is_pending && !appointment.is_approved) {
+        return 'lightyellow'; // Light yellow for Pending
+    } else if (appointment.is_approved && appointment.is_pending) {
+        return '#eaffea'; // Light green for Approved
+    } else if (appointment.is_approved && !appointment.is_pending) {
+        return 'white'; // White for Completed
+    } else {
+        return 'lightcoral'; // Light red for Rejected
+    }
+};
+
 function ManageAppointments() {
     const [appointments, setAppointments] = useState([]);
     const [selectedAppointment, setSelectedAppointment] = useState(null); // To track selected appointment
@@ -165,6 +179,7 @@ function ManageAppointments() {
                     <div
                         key={appointment.appointment_id}
                         className="appointmentCard"
+                        style={{ backgroundColor: getAppointmentCardColor(appointment) }}
                         onClick={() => setSelectedAppointment(appointment)}
                     >
                         <p><strong>Date:</strong> {appointment.date}</p>

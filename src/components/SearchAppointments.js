@@ -106,6 +106,19 @@ function SearchAppointment() {
     useEffect(() => {
         fetchAppointments();
     }, []);
+    const getAppointmentCardColor = (appointment) => {
+        if (appointment.is_pending && !appointment.is_approved) {
+            return 'lightyellow'; // Light yellow for Pending
+        } else if (appointment.is_approved && appointment.is_pending) {
+            return '#eaffea'; // Light green for Approved
+        } else if (appointment.is_approved && !appointment.is_pending) {
+            return 'white'; // White for Completed
+        } else {
+            return 'lightcoral'; // Light red for Rejected
+        }
+    };
+
+
 
     return (
         <div className="searchAppointment">
@@ -120,14 +133,28 @@ function SearchAppointment() {
             {errorMessage && <p className="errorMessage">{errorMessage}</p>}
             <div className="appointmentGrid">
                 {filteredAppointments.map((appointment) => (
-                    <div key={appointment.appointment_id} className="appointmentCard">
+                    <div
+                        key={appointment.appointment_id}
+                        className="appointmentCard"
+                        style={{ backgroundColor: getAppointmentCardColor(appointment) }}
+                    >
+
                         <p><strong>Appointment ID:</strong> {appointment.appointment_id}</p>
                         <p><strong>Patient Name:</strong> {appointment.patient_name}</p>
                         <p><strong>Doctor Name:</strong> {appointment.doctor_name}</p>
                         <p><strong>Date:</strong> {appointment.date}</p>
                         <p><strong>Start Time:</strong> {appointment.startTime}</p>
                         <p><strong>End Time:</strong> {appointment.endTime}</p>
-                        <p><strong>Status:</strong> {appointment.is_pending ? 'Pending' : appointment.is_approved ? 'Approved' : 'Rejected'}</p>
+                        <p>
+                            <strong>Status:</strong>{' '}
+                            {appointment.is_pending && !appointment.is_approved
+                                ? 'Pending'
+                                : appointment.is_approved && !appointment.is_pending
+                                    ? 'Completed'
+                                    : appointment.is_approved && appointment.is_pending ? "Approved" : "Rejected"}
+                        </p>
+
+
                     </div>
                 ))}
             </div>

@@ -86,3 +86,21 @@
         transform: translateY(0);
     }
 }
+
+.appointmentCard {
+    padding: 15px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.appointmentCard:hover {
+    transform: scale(1.02);
+}
+
+.appointmentCard p {
+    margin: 5px 0;
+    font-size: 0.95rem;
+}

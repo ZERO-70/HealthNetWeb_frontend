@@ -1,6 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import '../styles/PatientAppointments.css'; // Custom CSS for styling
 
+
+const getAppointmentCardColor = (appointment) => {
+    if (appointment.is_pending && !appointment.is_approved) {
+        return 'lightyellow'; // Light yellow for Pending
+    } else if (appointment.is_approved && appointment.is_pending) {
+        return '#eaffea'; // Light green for Approved
+    } else if (appointment.is_approved && !appointment.is_pending) {
+        return 'white'; // White for Completed
+    } else {
+        return 'lightcoral'; // Light red for Rejected
+    }
+};
+
+
 function PatientAppointments() {
     const [appointments, setAppointments] = useState([]);
     const [errorMessage, setErrorMessage] = useState('');
@@ -84,17 +98,27 @@ function PatientAppointments() {
         return <p className="loadingMessage">No appointments found.</p>;
     }
 
+
     return (
         <div className="appointments">
             <h2 className="appointmentsTitle">Your Appointments</h2>
             <div className="appointmentsList">
                 {appointments.map((appointment) => (
-                    <div key={appointment.appointment_id} className="appointmentCard">
+                    <div
+                        key={appointment.appointment_id}
+                        className="appointmentCard"
+                        style={{ backgroundColor: getAppointmentCardColor(appointment) }}
+                    >
+
                         <p><strong>Date:</strong> {appointment.date}</p>
                         <p><strong>Time:</strong> {appointment.startTime} - {appointment.endTime}</p>
                         <p><strong>Doctor:</strong> {appointment.doctorName}</p>
                         <p><strong>Is Approved:</strong> {appointment.is_approved ? 'Yes' : 'No'}</p>
-                        <p><strong>Status:</strong> {appointment.is_approved ? 'Approved' : appointment.is_pending ? 'Pending' : 'Rejected'}</p>
+                        {appointment.is_pending && !appointment.is_approved
+                            ? 'Pending'
+                            : appointment.is_approved && !appointment.is_pending
+                                ? 'Completed'
+                                : appointment.is_approved && appointment.is_pending ? "Approved" : "Rejected"}
                     </div>
                 ))}
             </div>

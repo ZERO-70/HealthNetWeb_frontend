@@ -171,6 +171,23 @@ function ManageInventory() {
         fetchDepartments();
     }, []);
 
+
+    const getCardBackgroundColor = (expiryDate) => {
+        const currentDate = new Date();
+        const expiry = new Date(expiryDate);
+        const oneMonthLater = new Date();
+        oneMonthLater.setMonth(currentDate.getMonth() + 1);
+
+        if (expiry < currentDate) {
+            return 'lightcoral'; // Expired
+        } else if (expiry <= oneMonthLater) {
+            return 'lightyellow'; // Expires within a month
+        } else {
+            return 'white'; // Default color
+        }
+    };
+
+
     return (
         <div className="manageInventory">
             <h2 className="inventoryTitle">Manage Inventory</h2>
@@ -285,7 +302,12 @@ function ManageInventory() {
             ) : (
                 <div className="inventoryList">
                     {filteredInventory.map((item) => (
-                        <div key={item.inventory_id} className="inventoryCard">
+                        <div
+                            key={item.inventory_id}
+                            className="inventoryCard"
+                            style={{ backgroundColor: getCardBackgroundColor(item.expiryDate) }}
+                        >
+
                             <p><strong>Inventory ID:</strong> {item.inventory_id}</p>
                             <p><strong>Name:</strong> {item.name}</p>
                             <p><strong>Quantity:</strong> {item.quantity}</p>

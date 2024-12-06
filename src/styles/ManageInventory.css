@@ -238,3 +238,31 @@
         transform: translateY(0);
     }
 }
+
+.inventoryCard {
+    padding: 15px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease;
+}
+
+.inventoryCard p {
+    margin: 5px 0;
+    font-size: 0.95rem;
+}
+
+.inventoryCard .recordActions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+.inventoryCard.lightcoral {
+    background-color: lightcoral;
+}
+
+.inventoryCard.lightyellow {
+    background-color: lightyellow;
+}
